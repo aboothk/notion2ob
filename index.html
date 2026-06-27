@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open in Obsidian</title>
+  <style>
+    body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+         max-width:520px;margin:18vh auto;padding:0 24px;text-align:center;color:#37352f}
+    a.btn{display:inline-block;margin-top:16px;padding:10px 20px;border-radius:8px;
+          background:#7c3aed;color:#fff;text-decoration:none;font-weight:600}
+    code{background:#f1f1ef;padding:2px 6px;border-radius:4px;font-size:13px;word-break:break-all}
+  </style>
+</head>
+<body>
+  <h2>正在打开 Obsidian…</h2>
+  <p>如果没有自动跳转（或浏览器弹窗询问），请点下面的按钮。</p>
+  <a class="btn" id="go" href="#">手动打开 Obsidian</a>
+  <p id="err" style="color:#d44;display:none">缺少 <code>?u=</code> 参数，或参数不是 obsidian:// 链接。</p>
+  <script>
+    var target = new URLSearchParams(location.search).get('u');
+    if (target && target.indexOf('obsidian://') === 0) {
+      document.getElementById('go').href = target;
+      location.replace(target);           // 自动跳转
+    } else {
+      document.getElementById('err').style.display = 'block';
+      document.getElementById('go').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
